@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		912BA7322CA2435B00B16AF9 /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912BA7312CA2435B00B16AF9 /* ImmersiveView.swift */; };
+		912BA7352CA243B200B16AF9 /* ModernChair.reality in Resources */ = {isa = PBXBuildFile; fileRef = 912BA7342CA243B200B16AF9 /* ModernChair.reality */; };
 		916849702CA241C2001BE343 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 9168496F2CA241C2001BE343 /* RealityKitContent */; };
 		916849722CA241C2001BE343 /* CapstoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916849712CA241C2001BE343 /* CapstoneApp.swift */; };
 		916849742CA241C2001BE343 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916849732CA241C2001BE343 /* ContentView.swift */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		912BA7312CA2435B00B16AF9 /* ImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveView.swift; sourceTree = "<group>"; };
+		912BA7342CA243B200B16AF9 /* ModernChair.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModernChair.reality; sourceTree = "<group>"; };
 		9168496A2CA241C2001BE343 /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9168496E2CA241C2001BE343 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		916849712CA241C2001BE343 /* CapstoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneApp.swift; sourceTree = "<group>"; };
@@ -36,6 +40,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		912BA7332CA2437800B16AF9 /* 3DModels */ = {
+			isa = PBXGroup;
+			children = (
+				912BA7342CA243B200B16AF9 /* ModernChair.reality */,
+			);
+			path = 3DModels;
+			sourceTree = "<group>";
+		};
 		916849612CA241C2001BE343 = {
 			isa = PBXGroup;
 			children = (
@@ -56,8 +68,10 @@
 		9168496C2CA241C2001BE343 /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				912BA7332CA2437800B16AF9 /* 3DModels */,
 				916849712CA241C2001BE343 /* CapstoneApp.swift */,
 				916849732CA241C2001BE343 /* ContentView.swift */,
+				912BA7312CA2435B00B16AF9 /* ImmersiveView.swift */,
 				916849752CA241C4001BE343 /* Assets.xcassets */,
 				9168497A2CA241C4001BE343 /* Info.plist */,
 				916849772CA241C4001BE343 /* Preview Content */,
@@ -143,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				916849792CA241C4001BE343 /* Preview Assets.xcassets in Resources */,
+				912BA7352CA243B200B16AF9 /* ModernChair.reality in Resources */,
 				916849762CA241C4001BE343 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +171,7 @@
 			files = (
 				916849742CA241C2001BE343 /* ContentView.swift in Sources */,
 				916849722CA241C2001BE343 /* CapstoneApp.swift in Sources */,
+				912BA7322CA2435B00B16AF9 /* ImmersiveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
