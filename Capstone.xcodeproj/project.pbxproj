@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		912BA7322CA2435B00B16AF9 /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912BA7312CA2435B00B16AF9 /* ImmersiveView.swift */; };
 		912BA7352CA243B200B16AF9 /* ModernChair.reality in Resources */ = {isa = PBXBuildFile; fileRef = 912BA7342CA243B200B16AF9 /* ModernChair.reality */; };
+		912BA73B2CA31C3300B16AF9 /* Bureau.reality in Resources */ = {isa = PBXBuildFile; fileRef = 912BA7382CA31C3200B16AF9 /* Bureau.reality */; };
+		912BA73C2CA31C3300B16AF9 /* Chair.reality in Resources */ = {isa = PBXBuildFile; fileRef = 912BA7392CA31C3300B16AF9 /* Chair.reality */; };
+		912BA73D2CA31C3300B16AF9 /* Table.reality in Resources */ = {isa = PBXBuildFile; fileRef = 912BA73A2CA31C3300B16AF9 /* Table.reality */; };
 		916849702CA241C2001BE343 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 9168496F2CA241C2001BE343 /* RealityKitContent */; };
 		916849722CA241C2001BE343 /* CapstoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916849712CA241C2001BE343 /* CapstoneApp.swift */; };
 		916849742CA241C2001BE343 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916849732CA241C2001BE343 /* ContentView.swift */; };
@@ -19,6 +22,9 @@
 /* Begin PBXFileReference section */
 		912BA7312CA2435B00B16AF9 /* ImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveView.swift; sourceTree = "<group>"; };
 		912BA7342CA243B200B16AF9 /* ModernChair.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModernChair.reality; sourceTree = "<group>"; };
+		912BA7382CA31C3200B16AF9 /* Bureau.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bureau.reality; sourceTree = "<group>"; };
+		912BA7392CA31C3300B16AF9 /* Chair.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chair.reality; sourceTree = "<group>"; };
+		912BA73A2CA31C3300B16AF9 /* Table.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = Table.reality; sourceTree = "<group>"; };
 		9168496A2CA241C2001BE343 /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9168496E2CA241C2001BE343 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		916849712CA241C2001BE343 /* CapstoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneApp.swift; sourceTree = "<group>"; };
@@ -44,6 +50,9 @@
 			isa = PBXGroup;
 			children = (
 				912BA7342CA243B200B16AF9 /* ModernChair.reality */,
+				912BA7382CA31C3200B16AF9 /* Bureau.reality */,
+				912BA7392CA31C3300B16AF9 /* Chair.reality */,
+				912BA73A2CA31C3300B16AF9 /* Table.reality */,
 			);
 			path = 3DModels;
 			sourceTree = "<group>";
@@ -158,6 +167,9 @@
 			files = (
 				916849792CA241C4001BE343 /* Preview Assets.xcassets in Resources */,
 				912BA7352CA243B200B16AF9 /* ModernChair.reality in Resources */,
+				912BA73B2CA31C3300B16AF9 /* Bureau.reality in Resources */,
+				912BA73D2CA31C3300B16AF9 /* Table.reality in Resources */,
+				912BA73C2CA31C3300B16AF9 /* Chair.reality in Resources */,
 				916849762CA241C4001BE343 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
