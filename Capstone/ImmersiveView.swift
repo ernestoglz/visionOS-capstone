@@ -42,6 +42,9 @@ struct ImmersiveView: View {
           value.entity.position = value.convert(value.location3D, from: .local, to: value.entity.parent!)
           value.entity.components[PhysicsBodyComponent.self]?.mode = .kinematic
         }
+        .onEnded { value in
+            value.entity.components[PhysicsBodyComponent.self]?.mode = .dynamic
+        }
     }
 
     var tapGesture: some Gesture {
