@@ -17,35 +17,22 @@ struct ImmersiveView: View {
 
     var body: some View {
         RealityView { content in
-            let floor = ModelEntity(mesh: .generatePlane(width: 1000, depth: 1000), materials: [OcclusionMaterial()])
-            floor.generateCollisionShapes(recursive: false)
-            floor.components[PhysicsBodyComponent.self] = .init(
-                massProperties: .default,
-                mode: .static
-            )
-            content.add(floor)
-
-            do {
-                let entity = try await Entity(named: "ModernChair")
-                loadedEntity = entity
-
-                loadedEntity?.position = [0, 0, -2]
-                loadedEntity?.generateCollisionShapes(recursive: false)
-
-                // Enable interactions on the entity.
-                loadedEntity?.components.set(InputTargetComponent())
-                loadedEntity?.components.set(CollisionComponent(shapes: [.generateBox(width: 20, height: 20, depth: 20)]))
-                loadedEntity?.components[PhysicsBodyComponent.self]?.isAffectedByGravity = true
-
-                guard let loadedEntity else { return }
-                content.add(loadedEntity)
-            } catch {
-                debugPrint(error)
-
+            if let scene = try? await Entity(named: "Scene", in: realityKitContentBundle) {
+                content.add(scene)
+                let floor = ModelEntity(mesh: .generatePlane(width: 1000, depth: 1000), materials: [OcclusionMaterial()])
+                floor.generateCollisionShapes(recursive: false)
+                floor.components[PhysicsBodyComponent.self] = .init(
+                    massProperties: .default,
+                    mode: .static
+                )
+                content.add(floor)
+                
+                
             }
+            
         }
         .gesture(dragGesture)
-        .gesture(tapGesture)
+      //  .gesture(tapGesture)
     }
 
     var dragGesture: some Gesture {
