@@ -13,58 +13,63 @@ import RealityKitContent
 struct ImmersiveView: View {
 
     private var cancellable: Set<AnyCancellable> = []
-    @State private var loadedEntity: Entity?
 
     var body: some View {
         RealityView { content in
-            let floor = ModelEntity(mesh: .generatePlane(width: 1000, depth: 1000), materials: [OcclusionMaterial()])
-            floor.generateCollisionShapes(recursive: false)
-            floor.components[PhysicsBodyComponent.self] = .init(
-                massProperties: .default,
-                mode: .static
-            )
-            content.add(floor)
-
-            do {
-                let entity = try await Entity(named: "ModernChair")
-                loadedEntity = entity
-
-                loadedEntity?.position = [0, 0, -2]
-                loadedEntity?.generateCollisionShapes(recursive: false)
-
-                // Enable interactions on the entity.
-                loadedEntity?.components.set(InputTargetComponent())
-                loadedEntity?.components.set(CollisionComponent(shapes: [.generateBox(width: 20, height: 20, depth: 20)]))
-                loadedEntity?.components[PhysicsBodyComponent.self]?.isAffectedByGravity = true
-
-                guard let loadedEntity else { return }
-                content.add(loadedEntity)
-            } catch {
-                debugPrint(error)
-
+            await loadEntities(content: &content)
+        } update: { content in
+            var distanceFromOrigin: Float = 0
+            content.entities.forEach { entity in
+                let planet = SolarSystem(rawValue: entity.name.capitalized)
+                applyOrbitAnimation(
+                    to: entity,
+                    distanceFromOrigin: distanceFromOrigin,
+                    position: planet?.position, 
+                    scale: planet?.scale,
+                    duration: planet?.duration ?? 0.0,
+                    content: content
+                )
+                distanceFromOrigin += 0.1
             }
         }
-        .gesture(dragGesture)
-        .gesture(tapGesture)
     }
 
-    var dragGesture: some Gesture {
-      DragGesture()
-        .targetedToAnyEntity()
-        .onChanged { value in
-          value.entity.position = value.convert(value.location3D, from: .local, to: value.entity.parent!)
-          value.entity.components[PhysicsBodyComponent.self]?.mode = .kinematic
+    private func loadEntities(content: inout RealityViewContent) async {
+        for planet in SolarSystem.allCases {
+            if let scene = try? await Entity(named: planet.rawValue, in: realityKitContentBundle) {
+                content.add(scene)
+                await applySkyBox(scene: scene)
+            }
         }
     }
 
-    var tapGesture: some Gesture {
-      TapGesture()
-        .targetedToAnyEntity()
-        .onEnded { value in
-          // do nothing
-          value.entity.components[PhysicsBodyComponent.self]?.mode = .dynamic
-          value.entity.components[PhysicsMotionComponent.self]?.linearVelocity = [0, 7,-5]
+    private func applyOrbitAnimation(to entity: Entity, distanceFromOrigin: Float, position: SIMD3<Float>?, scale: SIMD3<Float>?,duration: Double, content: RealityViewContent) {
+        entity.scale = scale ?? [0, 0, 0]
+        entity.position = position ?? [0, 0, 0]
+        let orbit = OrbitAnimation(
+            duration: duration,
+            axis: SIMD3<Float>(x: 0, y: 0.1, z: 0),
+            startTransform: entity.transform,
+            spinClockwise: false,
+            orientToPath: true,
+            rotationCount: 1.0,
+            bindTarget: .transform,
+            repeatMode: .repeat
+        )
+
+
+        if let animation = try? AnimationResource.generate(with: orbit) {
+            entity.playAnimation(animation)
         }
+    }
+
+    private func applySkyBox(scene: Entity) async {
+        guard let resource = try? await EnvironmentResource(named: "Sunlight") else { return }
+        var iblComponent = ImageBasedLightComponent(source: .single(resource), intensityExponent: 3.0)
+        iblComponent.inheritsRotation = true
+
+        await scene.components.set(iblComponent)
+        await scene.components.set(ImageBasedLightReceiverComponent(imageBasedLight: scene))
     }
 }
 
