@@ -32,11 +32,14 @@ struct ImmersiveView: View {
                 distanceFromOrigin += 0.1
             }
         }
+        .offset(y: -2500)
+        .offset(z: -5000)
     }
 
     private func loadEntities(content: inout RealityViewContent) async {
         for planet in SolarSystem.allCases {
-            if let scene = try? await Entity(named: planet.rawValue, in: realityKitContentBundle) {
+            if var scene = try? await Entity(named: planet.rawValue, in: realityKitContentBundle) {
+                applyAccessibilityComponent(entity: &scene, accessibilityLabel: planet.accessibilityLabel)
                 content.add(scene)
                 await applySkyBox(scene: scene)
             }
@@ -70,6 +73,15 @@ struct ImmersiveView: View {
 
         await scene.components.set(iblComponent)
         await scene.components.set(ImageBasedLightReceiverComponent(imageBasedLight: scene))
+    }
+
+    private func applyAccessibilityComponent(entity: inout Entity, accessibilityLabel: String) {
+        var accessibilityComponent = AccessibilityComponent()
+        accessibilityComponent.label = "\(accessibilityLabel)"
+        accessibilityComponent.isAccessibilityElement = true
+        accessibilityComponent.systemActions = [.activate]
+
+        entity.components[AccessibilityComponent.self] = accessibilityComponent
     }
 }
 

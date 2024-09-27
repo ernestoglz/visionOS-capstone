@@ -10,7 +10,7 @@ import RealityKit
 import RealityKitContent
 
 struct ContentView: View {
-    
+
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
 
@@ -20,13 +20,12 @@ struct ContentView: View {
     var body: some View {
         VStack {
             VStack (spacing: 12) {
-              Toggle("Show ImmersiveSpace", systemImage: "mountain.2", isOn: $showImmersiveSpace)
+                Toggle("Show Immersive Solar System", systemImage: "sun.max.circle", isOn: $showImmersiveSpace)
                     .font(.headline)
                     .fontWeight(.black)
-                    .foregroundColor(.yellow)
             }
-            .frame(width: 360)
-            .padding(36)
+            .frame(width: 420)
+            .padding(46)
             .glassBackgroundEffect()
         }
         .onChange(of: showImmersiveSpace) { _, newValue in

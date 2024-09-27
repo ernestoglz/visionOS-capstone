@@ -23,21 +23,21 @@ enum SolarSystem: String, CaseIterable {
         case .sun:
             [0, 1, 0]
         case .mercury:
-            [2.05, 1, -0.139]
+            [1, 1, 0]
         case .venus:
-            [3.1023, 1, -0.145]
+            [2, 1, 0]
         case .earth:
-            [5.008, 1, -0.082]
+            [3, 1, 0]
         case .mars:
-            [6.838, 1, -0.093]
+            [4, 1, 0]
         case .jupiter:
-            [9.413, 1, -0.016]
+            [6, 1, 0]
         case .saturn:
-            [12.742, 1, 0.093]
+            [8, 1, 0]
         case .uranus:
-            [15.921, 1, -0.246]
+            [10, 1, -0]
         case .neptune:
-            [18.682, 1, -0.2713]
+            [12, 1, 0]
         }
     }
 
@@ -75,6 +75,15 @@ enum SolarSystem: String, CaseIterable {
         case .saturn: 29.8
         case .uranus: 35.0
         case .neptune: 47.9
+        }
+    }
+
+    var accessibilityLabel: String {
+        switch self {
+        case .sun:
+            "Sun"
+        default:
+            "Planet \(self.rawValue)"
         }
     }
 }
